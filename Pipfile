@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+psycopg2 = "*"
+gunicorn = "*"
+flask-sqlalchemy = "*"
+opencv-python = "==4.2.0.34"
+opencv-contrib-python = "==4.2.0.34"
+psycopg2-binary = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

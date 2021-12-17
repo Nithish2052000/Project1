@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="box">
+        <form id="Contact form" action = "login" method="POST">
+        <h1>Login</h1>
+        {% if message %}
+        <p class = "message">{{ message | safe}}</p>
+        {% endif %}
+	 	<input name = 'username' id="Name" type="text" placeholder="User name" required>
+        <input name = 'Password' id="designation"type="password" placeholder="Password" required>
+        <input type="submit">    
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            font-family: sans-serif;
+            background: #34495e;
+        }
+        .p{
+            color: white;
+        }
+        .box {
+            width: 500px;
+            padding: 40px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background: #191919;
+            text-align: center;
+            border: #3498db solid ;
+            border-radius: 50px;
+        }
+        .box h1{
+        color: rgb(8, 79, 231);
+        text-transform: uppercase;
+        font-weight: 500;
+        }
+        .box input[type ="password"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top: 14px;
+            padding-right:10px;
+            padding-bottom: 14px;
+            padding-left:  10px;  
+            width: 200px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+
+        }
+        .box input[type ="password"]:focus
+        {
+            width: 280px;
+            background-color: #191919;
+        }
+        .box input[type ="text"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top: 14px;
+            padding-right:10px;
+            padding-bottom: 14px;
+            padding-left:  10px;  
+            width: 200px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+        }
+        .box input[type ="text"]:focus
+        {
+            width: 280px;
+            background-color: #191919;
+        }
+
+        .box input[type ="submit"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin:auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top:14px;
+            padding-bottom:14px;
+            padding-right:60px;
+            padding-left:20px;
+            width: 50px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+            cursor: pointer;
+        }
+        button{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top:14px;
+            padding-bottom:14px;
+            padding-right:80px;
+            padding-left:40px;
+            width: 50px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #2ecc71;
+        }
+        .box input[type ="submit"]:hover
+        {
+            width: 200px;
+            padding-right:40px; 
+            padding-left:40px;
+            background: #2ecc71;
+        }
+    </style>
+</body>
+</html>

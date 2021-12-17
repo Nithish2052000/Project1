@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div class="modal">
+        <div class="modal-content">
+          <span class="closeBtn">&times</span>
+          <p>This is simple registration form after filling in the details please click submit button after that you will be redirected to a Video streaming page</p>
+        </div>
+    </div>
+    <div class="box">
+        <form id="Contact form" action = "register" method="POST">
+        <h1>Register</h1>
+        {% if message %}
+            <p class = "message">{{ message | safe}}</p>
+        {% endif %}
+	 	<input name = 'Name' id="Name" type="text" placeholder="User name" required>
+        <input name = 'e-mail' id="email" type="email" placeholder="E-mail" required>
+        <input name = 'password' id="designation"type="password" placeholder="Password" required>
+        <input type="submit">
+    <script>
+        var modal = document.querySelector(".modal")
+        var closeBtn = document.querySelector(".closeBtn")
+    
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        })
+        function myFunc(){
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: '/register/',
+                data: {
+                "userName" : $('#Name').val(),
+                "email" : $("#email").val(),
+                "designation":$("#designation").val(),
+                }
+            });
+        }
+    </script>    
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            font-family: sans-serif;
+            background: #34495e;
+            }
+        .box {
+            width: 500px;
+            padding: 40px;
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            background: #191919;
+            text-align: center;
+            border: #3498db solid ;
+            border-radius: 50px;
+        }
+        .message{
+            color: #ccc;
+        }
+        .box h1{
+        color: rgb(8, 79, 231);
+        text-transform: uppercase;
+        font-weight: 500;
+        }
+        .box input[type ="password"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top: 14px;
+            padding-right:10px;
+            padding-bottom: 14px;
+            padding-left:  10px;  
+            width: 200px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+
+        }
+        .box input[type ="password"]:focus
+        {
+            width: 280px;
+            background-color: #191919;
+        }
+        .box input[type ="email"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top: 14px;
+            padding-right:10px;
+            padding-bottom: 14px;
+            padding-left:  10px;  
+            width: 200px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+
+        }
+        .box input[type ="email"]:focus
+        {
+            width: 280px;
+            background-color: #191919;
+        }
+        .box input[type ="text"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top: 14px;
+            padding-right:10px;
+            padding-bottom: 14px;
+            padding-left:  10px;  
+            width: 200px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+
+        }
+        .box input[type ="text"]:focus
+        {
+            width: 280px;
+            background-color: #191919;
+        }
+
+        .box input[type ="submit"]
+        {
+            border: 0;
+            background: none;
+            display: block;
+            margin:auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top:14px;
+            padding-bottom:14px;
+            padding-right:60px;
+            padding-left:20px;
+            width: 50px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+            cursor: pointer;
+        }
+        button{
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding-top:14px;
+            padding-bottom:14px;
+            padding-right:80px;
+            padding-left:40px;
+            width: 50px;
+            outline:none;
+            color: white;
+            border-radius: 24px;
+            transition: .25s;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #2ecc71;
+        }
+        .box input[type ="submit"]:hover
+        {
+            width: 200px;
+            padding-right:40px; 
+            padding-left:40px;
+            background: #2ecc71;
+        }
+        .box textarea:focus
+        {
+            padding-top: 30px;
+            width:350px;
+            height:70px;
+
+        }
+        .modal{
+            position: fixed;
+            z-index:1;
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            overflow:auto;
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+          .modal-content{
+            color: #f4f4f4;
+            background-color: #3498db;
+            margin:20% auto;
+            padding:20px;
+            width:70%;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 8px 0 rgba(0, 0, 0, 0.17);
+            animation-name: modalopen;
+            animation-duration: 1s;
+          }
+          .closeBtn{
+            color:#ccc;
+            float:right;
+            font-size: 30px;
+          }
+          .closeBtn:hover, .closeBtn:focus{
+            color:#000;
+            text-decoration: none;
+            cursor: pointer;
+          } 
+          @keyframes modalopen{
+            from{opacity:0}
+            to{opacity:1}
+          } 
+    </style>
+</body>
+</html>

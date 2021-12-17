@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Streaming Video Recorder</title>
+</head>
+<body>
+  <div class="modal">
+    <div class="modal-content">
+      <span class="closeBtn">&times</span>
+      <p>This is a video recorder it will start recording once you click the "Start" button and stops when you click the "Stop" button. I request you to atleast give a time lapse of 50 seconds between Start and stop and do not deviate from the screen. Once you are done please click the move to training set link to train the dataset</p>
+    </div>
+  </div>
+  <h1>Streaming Live Video of {{name}} </h1>
+  <div id="recorder">
+    <button id="record">Record</button>
+    <button id="stop">Stop</button>
+    <a class = "dataset" href="{{ url_for('simple') }}">Move to training the dataset</a>
+    <a id="download"></a>
+    <script type="text/javascript" src="{{ url_for('static', filename='recorder.js') }}"></script>
+ </div>
+  <img id="video" src="{{ url_for('video_viewer') }}"> 
+  <script>
+    var modal = document.querySelector(".modal")
+    var closeBtn = document.querySelector(".closeBtn")
+    
+    closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+    })
+    var buttonRecord = document.getElementById("record");
+    var buttonStop = document.getElementById("stop");
+
+    buttonStop.disabled = true;
+
+    buttonRecord.onclick = function() {
+    // var url = window.location.href + "record_status";
+    buttonRecord.disabled = true;
+    buttonStop.disabled = false;
+
+    // disable download link
+    var downloadLink = document.getElementById("download");
+    downloadLink.text = "";
+    downloadLink.href = "";
+
+    // XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // alert(xhr.responseText);
+        }
+    }
+    xhr.open("POST", "/record_status");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ status: "true" }));
+    };
+
+    buttonStop.onclick = function() {
+    buttonRecord.disabled = false;
+    buttonStop.disabled = true;    
+
+    // XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // alert(xhr.responseText);
+
+            // enable download link
+            var downloadLink = document.getElementById("download");
+            downloadLink.text = "Download Video";
+            downloadLink.href = "/videos/video.avi";
+        }
+    }
+    xhr.open("POST", "/record_status");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ status: "false" }));
+    };
+  </script>
+<style>
+  body{
+    text-align:center ;
+    background: white;
+  }
+  h1{
+    margin-bottom: 10px;
+  }
+  button{
+    border: 0;
+    background: none;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom:10px;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding-top:14px;
+    padding-bottom:14px;
+    padding-right:75px;
+    padding-left:40px;
+    width: 50px;
+    outline:none;
+    color: black;
+    border-radius: 24px;
+    transition: .25s;
+    cursor: pointer;
+  }
+  button:hover{
+    background: #2ecc71;
+  }
+  a{
+    color: black;
+  }
+  .modal{
+    position: fixed;
+    z-index:1;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    overflow:auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .dataset{
+    color: blue;
+  }
+  .modal-content{
+    color: #f4f4f4;
+    background-color: #3498db;
+    margin:20% auto;
+    padding:20px;
+    width:70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 8px 0 rgba(0, 0, 0, 0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+  }
+  .closeBtn{
+    color:#ccc;
+    float:right;
+    font-size: 30px;
+  }
+  .closeBtn:hover, .closeBtn:focus{
+    color:#000;
+    text-decoration: none;
+    cursor: pointer;
+  } 
+  @keyframes modalopen{
+    from{opacity:0}
+    to{opacity:1}
+  } 
+</style>
+</body>
+</html>
